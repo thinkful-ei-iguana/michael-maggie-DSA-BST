@@ -60,7 +60,7 @@ function letterTree() {
 //5 - Height of a BST
 let heightCount = 0;
 function height(tree) {
-  
+
   if (!tree) {
     return;
   }
@@ -83,8 +83,55 @@ function height(tree) {
 console.log(height(numberTree()));
 
 //6 - Is it a BST?
+// make a fake tree!
+function invalidTree() {
+  let firstTree = new BST();
+  firstTree.insert(3, 3);
+  firstTree.insert(1, 1);
+  firstTree.badinsert(8, 8);
+  firstTree.insert(4, 4);
+  firstTree.insert(6, 6);
+  firstTree.insert(9, 9);
+  firstTree.insert(2, 2);
+  firstTree.insert(5, 5);
+  firstTree.insert(7, 7);
+  
+  return firstTree;
+}
+
+
+
+let counter = 0;
+function isItBST(tree, right, left) {
+  counter++;
+  console.log(`Iteration num: ${counter}, ${tree}`);
+  if(tree === null) {
+    return true;
+  }
+  if((tree.left && tree.value <= tree.left.value) || (tree.right &&tree.value > tree.right.value)) {
+    return false;
+  }
+  return isItBST(tree.left, right, tree.value) && isItBST(tree.right, tree.value, left);
+}
+//Should have been done with switch/case?
+
+console.log(isItBST(invalidTree()));
+
 
 //7 - 3rd Largest Node
+
+//recursive
+//input: tree
+//1st: test if it has 3 branches right of root
+//2nd: count back
+//3rd: return value?
+//output: 3rd largest value
+function nthLargest(tree, n) {
+  
+  return ;
+}
+
+nthLargest(numberTree(), 3);
 
 //8 - Balanced BST Algorithm
 

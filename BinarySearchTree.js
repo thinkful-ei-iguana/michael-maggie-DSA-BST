@@ -28,6 +28,26 @@ class BinarySearchTree {
     }
   }
 
+  badinsert(key, value) {
+    if (this.key == null) {
+      this.key = key;
+      this.value = value;
+    } else if (key > this.key) {
+      if (this.left == null) {
+        this.left = new BinarySearchTree(key, value, this);
+      }
+      else {
+        this.left.badinsert(key, value);
+      }
+    } else {
+      if(this.right == null) {
+        this.right = new BinarySearchTree(key, value, this);
+      } else {
+        this.right.badinsert(key, value);
+      }
+    }
+  }
+
   find(key) {
     if (this.key == key) {
       return this.value;
