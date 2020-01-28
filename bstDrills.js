@@ -104,7 +104,9 @@ function invalidTree() {
 let counter = 0;
 function isItBST(tree, right, left) {
   counter++;
-  console.log(`Iteration num: ${counter}, ${tree}`);
+  if (tree.key) {
+    console.log(`Iteration num: ${counter}, currently on node key=${tree.key}.`);
+  }
   if(tree === null) {
     return true;
   }
