@@ -50,7 +50,7 @@ class BinarySearchTree {
 
   find(key) {
     if (this.key == key) {
-      return this.value;
+      return this;
     } else if (key < this.key && this.left) {
       return this.left.find(key);
     } else if (key > this.key && this.right) {

@@ -88,7 +88,6 @@ function invalidTree() {
   let firstTree = new BST();
   firstTree.insert(3, 3);
   firstTree.insert(1, 1);
-  firstTree.badinsert(8, 8);
   firstTree.insert(4, 4);
   firstTree.insert(6, 6);
   firstTree.insert(9, 9);
@@ -104,7 +103,7 @@ function invalidTree() {
 let counter = 0;
 function isItBST(tree, right, left) {
   counter++;
-  if (tree.key) {
+  if (tree) {
     console.log(`Iteration num: ${counter}, currently on node key=${tree.key}.`);
   }
   if(tree === null) {
@@ -125,16 +124,39 @@ console.log(isItBST(invalidTree()));
 //recursive
 //input: tree
 //1st: test if it has 3 branches right of root
+//1.5 - find max
 //2nd: count back
 //3rd: return value?
 //output: 3rd largest value
-function nthLargest(tree, n) {
-  
-  return ;
+function nthLargest(tree, n=3, obj) {
+
+  if (tree.right) {
+    nthLargest(tree.right, n, obj);
+  }
+  obj.count = obj.count + 1;
+  if (obj.count === n) {
+    console.log(`The ${n} Largest number: `, tree.key);
+    return tree.key;
+  }
+  if (tree.left) {
+    nthLargest(tree.left, n, obj);
+  }
 }
 
-nthLargest(numberTree(), 3);
+console.log(nthLargest(numberTree(), 3, {count: 0}));
 
+let numTree = numberTree();
 //8 - Balanced BST Algorithm
+function isBalanced(tree) {
+  if (!tree.left) {
+    return !(tree.right && (tree.right.left || tree.right.right));
+  }
+  if (!tree.right) {
+    return !(tree.left && (tree.left.left || tree.right.right));
+  }
+  return isBalanced(tree.left) && isBalanced(tree.right);
+}
+
+console.log('This unbalanced tree should return false: ', isBalanced(numTree));
 
 //9 - Are they the same BSTs?
